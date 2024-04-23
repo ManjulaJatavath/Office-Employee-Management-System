@@ -12,6 +12,7 @@
   "functions": {
     "api": {
       "runtime": "python3.9",
+      "maxDuration": 100,
       "memory": 512,
       "includeFiles": ["office_emp_project/**"]
     }
