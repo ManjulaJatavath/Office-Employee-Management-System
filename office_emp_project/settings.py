@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$ljd4ldp6v)tpz)9#)0m+7qfq_j8wx*%s-kf3!#&_5aeixmh!2'
-
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# 'django-insecure-$ljd4ldp6v)tpz)9#)0m+7qfq_j8wx*%s-kf3!#&_5aeixmh!2'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG","False").lower()=="true"
 
-ALLOWED_HOSTS = ['office-app-6d9c727da10b.herokuapp.com']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -80,9 +79,18 @@ WSGI_APPLICATION = 'office_emp_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgresql_hzti',
+        'USER' : 'postgresql_hzti_user',
+        'PASSWORD':'EfpI8j2JsKokpoeSLbIhtfGTPM7PmcvR',
+        'HOST':'dpg-con2jk0cmk4c739tjuc0-a',
+        'PORT':'5432'
     }
+}
+
+database_url=os.environ.get(" DATABASE_URL")
+DATABASES = {
+    'default': dj_database_url.parse(database_url)
 }
 
 
@@ -121,7 +129,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
