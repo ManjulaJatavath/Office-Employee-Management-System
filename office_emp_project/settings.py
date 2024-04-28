@@ -77,16 +77,16 @@ WSGI_APPLICATION = 'office_emp_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgresql_hzti',
-        'USER' : 'postgresql_hzti_user',
-        'PASSWORD':'EfpI8j2JsKokpoeSLbIhtfGTPM7PmcvR',
-        'HOST':'dpg-con2jk0cmk4c739tjuc0-a',
-        'PORT':'5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgresql_hzti',
+#         'USER' : 'postgresql_hzti_user',
+#         'PASSWORD':'EfpI8j2JsKokpoeSLbIhtfGTPM7PmcvR',
+#         'HOST':'dpg-con2jk0cmk4c739tjuc0-a',
+#         'PORT':'5432'
+#     }
+# }
 
 database_url=os.environ.get(" DATABASE_URL")
 DATABASES = {
